@@ -1,14 +1,19 @@
 class Restaurante:
-    nome = ''
-    categoria = ''
-    ativo = False
 
-restaurante_applebee = Restaurante()
-restaurante_applebee.nome = 'Applebee'
-restaurante_applebee.categoria = 'Gourmet'
+    # Método Construtor
+    def __init__(self, nome, categoria):
+        self.nome = nome
+        self.categoria = categoria
+        self.ativo = False
 
-restaurante_outback = Restaurante()
+    # Método para exibir o objeto em formato de texto
+    def __str__(self):
+        return f'{self.nome} | {self.categoria}'
+
+restaurante_applebee = Restaurante('Applebee','Gourmet')
+restaurante_outback = Restaurante('Australiana','Steakhouse')
 
 restaurantes = [restaurante_applebee, restaurante_outback]
 
-print(vars(restaurante_applebee)) #vars -> dicionário dos atributos e métodos
+print(restaurante_applebee) 
+print(restaurante_outback)
