@@ -1,16 +1,17 @@
 from models.restaurante import Restaurante
+from models.cardapio.bebida import Bebida
+from models.cardapio.prato import Prato
 
-restaurante_outback = Restaurante('outblack','Steakhouse')
+restaurante_gendai = Restaurante('gendai','culinária japonesa')
 
-restaurante_outback.alterar_status()
-restaurante_outback.receber_avaliacao('Julia', 10)
-restaurante_outback.receber_avaliacao('Jhulia', 5)
-restaurante_outback.receber_avaliacao('Guilherme', 4)
-restaurante_outback.receber_avaliacao('Leticia', 3)
-restaurante_outback.receber_avaliacao('Anna', 4)
+bebida_suco = Bebida('Suco de Laranja', 10.00, 'Grande')
+prato_domburi = Prato('Chicken Domburi', 30.90, 'O melhor domburi de frango de SP')
+
+restaurante_gendai.adicionar_no_cardapio(bebida_suco)
+restaurante_gendai.adicionar_no_cardapio(prato_domburi)
 
 def main():
-    Restaurante.listar_restaurantes()
+    restaurante_gendai.exibir_cardapio
 
 if __name__ == '__main__':
     main()
