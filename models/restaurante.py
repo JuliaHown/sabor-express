@@ -20,9 +20,9 @@ class Restaurante:
     # Método da classe criado para listar
     @classmethod
     def listar_restaurantes(cls):
-        print(f"{'Nome do restaurante'.ljust(25)} | {'Categoria'.ljust(25)} | {'Status'}")
+        print(f"{'Nome do restaurante'.ljust(25)} | {'Categoria'.ljust(25)} | {'Avaliação'.ljust(25)} | {'Status'}")
         for restaurante in cls.restaurantes:
-            print(f'{restaurante._nome.ljust(25)} | {restaurante._categoria.ljust(25)} | {restaurante.ativo}')
+            print(f'{restaurante._nome.ljust(25)} | {restaurante._categoria.ljust(25)} | {str(restaurante.media_avaliacoes).ljust(25)} | {restaurante.ativo}')
 
     # Verifica o status do restaurante
     @property
@@ -35,17 +35,18 @@ class Restaurante:
     
     # Método para adicionar uma avaliação ao restaurante
     def receber_avaliacao(self, cliente, nota):
-        avaliacao = Avaliacao(cliente, nota)
-        self._avaliacao.append(avaliacao)
+        if 0 < nota <= 5:
+            avaliacao = Avaliacao(cliente, nota)
+            self._avaliacao.append(avaliacao)
 
     # Método para calcular a media de avaliações do restaurante
     @property
     def media_avaliacoes(self):
-        if not self.receber_avaliacao:
-            return 0
+        if not self._avaliacao:
+            return '-'
         soma_das_notas = sum(avaliacao._nota for avaliacao in self._avaliacao)
-        quantidade_notas = len(self._avaliacao)
-        media = round(soma_das_notas / quantidade_notas, 1)
+        quantidade_de_notas = len(self._avaliacao)
+        media = round(soma_das_notas / quantidade_de_notas, 1)
         return media
 
 
