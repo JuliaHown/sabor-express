@@ -93,24 +93,25 @@ def cadastrar_novo_restaurante():
     
     voltar_ao_menu()
 
-def listar_restaurantes():
-    ''' Lista os restaurantes presentes na lista 
-    
-    Outputs:
-    - Exibe a lista de restaurantes na tela
-    '''
+    @classmethod
+    def listar_restaurantes(cls):
+        ''' Lista os restaurantes presentes na lista 
+        
+        Outputs:
+        - Exibe a lista de restaurantes na tela
+        '''
 
-    exibir_subtitulo('Listando restaurantes')
+        exibir_subtitulo('Listando restaurantes')
 
-    print(f'{'Nome do restaurante'.ljust(22)}' | {'categoria'.ljust(20)} | {'Status'})
-    for restaurante in restaurantes:
-        nome_restaurante = restaurante['nome']
-        categoria = restaurante['categoria']
+        print(f'{"Nome do restaurante".ljust(22)} | {"Categoria".ljust(20)} | {"Status"}')
+        for restaurante in cls.restaurantes:
+            nome_restaurante = restaurante._nome
+            categoria = restaurante._categoria
 
-        ativo = 'ativado' if restaurante['ativo'] else 'desativado'
-        print(f'- {nome_restaurante.ljust(22)} | {categoria.ljust(20)} | {ativo}')
+            ativo = 'ativado' if restaurante._ativo else 'desativado'
+            print(f'- {nome_restaurante.ljust(22)} | {categoria.ljust(20)} | {ativo}')
 
-    voltar_ao_menu()
+        voltar_ao_menu()
 
 def alterar_estado_restaurante():
     ''' Altera o estado ativo/desativado de um restaurante 
