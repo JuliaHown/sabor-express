@@ -13,18 +13,19 @@ class Restaurante:
     def __str__(self):
         return f'{self._nome} | {self._categoria}'
     
-    # Método criado para listar
-    def listar_restaurantes():
+    # Método da classe criado para listar
+    @classmethod
+    def listar_restaurantes(cls):
         print(f"{'Nome do restaurante'.ljust(25)} | {'Categoria'.ljust(25)} | {'Status'}")
-        for restaurante in Restaurante.restaurantes:
-            print(f'{restaurante.nome.ljust(25)} | {restaurante.categoria.ljust(25)} | {restaurante.ativo}')
+        for restaurante in cls.restaurantes:
+            print(f'{restaurante._nome.ljust(25)} | {restaurante._categoria.ljust(25)} | {restaurante.ativo}')
+
+    # Método para alterar o status do restaurante
+    def alterar_status(self):
+        self._ativo = not self._ativo
 
     # Verifica o status do restaurante
     @property
     def ativo(self):
         return 'Ativo ✅' if self._ativo else 'Não ativo❌'
 
-restaurante_applebee = Restaurante('applebee','Gourmet')
-restaurante_outback = Restaurante('outblack','Steakhouse')
-
-Restaurante.listar_restaurantes()
